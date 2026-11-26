@@ -9,8 +9,23 @@
 ## 0. Lee antes de empezar (obligatorio)
 
 1. `docs/plan-desarrollo-despliegue-gcp.md` §4 (contrato de proveedor).
-2. Reglas inviolables §4 del `PROMPT-EQUIPO-DESARROLLO.md`. Las dos más importantes aquí:
-   - **PROHIBIDO consultar números de documento reales de ninguna persona** (ni los tuyos, ni de familiares, ni inventados que coincidan con personas reales por azar). Se usan documentos de prueba ficticios y, sobre todo, pruebas de contrato que NO consumen datos (401/400/404).
+2. Reglas inviolables §4 del `PROMPT-EQUIPO-DESARROLLO.md`. Las más importantes aquí:
+   - **Consulta real autorizada (SÍ está permitida):** el caso (e) permite UNA
+     consulta real con **tu propio documento** (autocercicio) o con un
+     documento cuyo titular haya dado **autorización escrita** registrada en
+     tu reporte. Esta es la validación que demuestra que el flujo completo
+     funciona (respuesta 200 con datos reales).
+   - **PROHIBIDO consultar documentos de terceros** sin autorización escrita
+     del titular registrada en el reporte: familiares, amigos o números
+     inventados que coincidan con personas reales por azar. Los datos de
+     salud son sensibles (Ley 1581 de 2012) y el brief lo prohíbe (§15).
+   - Por defecto los casos (a)–(d) usan documentos de prueba ficticios y
+     pruebas de contrato que NO consumen datos (401/400/404); solo el caso
+     (e) es la consulta real autorizada (máximo 1 intento, sin reintentos).
+   - **PROHIBIDO subir a Git datos personales reales**: en `results.json`
+     todo valor personal (nombre, número de documento, EPS, etc.) se
+     redacta como `***` conservando el tipo y la estructura del campo. La
+     respuesta cruda queda en `raw_response.json`, archivo en `.gitignore`.
    - **PROHIBIDO escribir la API key en el código, en el reporte o en el commit.** La key vive SOLO en una variable de entorno.
 
 ## 1. Asignación (un endpoint por desarrollador)
@@ -71,13 +86,24 @@ llamado probe.py que pruebe el endpoint <URL> con estas reglas:
 5. Timeout 15 s por request, máximo 2 reintentos solo en 429/5xx con backoff 5 s.
 6. Si un caso consume créditos (respuesta 200 real), DETENTE tras el primer 200
    y márcalo en results.json como "consumo_credito: true".
+7. SOLO si la variable de entorno PROBE_REAL_DOC está definida: ejecuta UNA
+   única consulta real con ese documento (validación autorizada: autocercicio
+   o titular con autorización escrita). Sin reintentos. En results.json los
+   valores personales se reemplazan por "***" conservando tipo y estructura;
+   la respuesta cruda va a raw_response.json y ese archivo se agrega a
+   .gitignore. Guarda en results.json "validacion_real": {"ejecutada": true,
+   "documento": "<tipo>+últimos 3 dígitos", "autorizacion": "autocercicio"}.
+   Si PROBE_REAL_DOC no está definida, escribe "validacion_real":
+   {"ejecutada": false} y no hagas la consulta real.
 No agregues dependencias fuera de requests. Explica cada cambio antes de hacerlo.
 ```
 
-**No permitas que el agente:** invente credenciales, consulte documentos que
-no sean los ficticios indicados, suba archivos `.env`, ni "complete" datos que
-no existen en la respuesta real. Si el agente propone algo de eso, recházalo
-y anótalo en tu reporte (sección "desviaciones del agente").
+**No permitas que el agente:** invente credenciales, consulte documentos de
+terceros o repita la consulta real autorizada (el caso (e) es UN solo intento
+y solo cuando `PROBE_REAL_DOC` esté definida), suba archivos `.env` o
+`raw_response.json`, ni "complete" datos que no existen en la respuesta real.
+Si el agente propone algo de eso, recházalo y anótalo en tu reporte (sección
+"desviaciones del agente").
 
 **Valida tú mismo:** ejecuta el script, revisa el código línea por línea (debes
 poder explicarlo en la revisión con Jorge), y verifica que `results.json` no
@@ -89,11 +115,19 @@ contenga la key ni datos personales.
 python3 -m venv .venv && source .venv/bin/activate
 pip install requests
 python scripts/sondeo/<tu-carpeta>/probe.py
+
+# Validación real autorizada (opcional pero recomendada): tu propio documento.
+# NUNCA el documento de un tercero. Un solo intento, sin reintentos.
+export PROBE_REAL_DOC='CC,<tu-numero-de-cedula>'
+python scripts/sondeo/<tu-carpeta>/probe.py
 ```
 
-- Si obtuviste **respuestas 200 con el documento ficticio**: registra el
-  contrato completo (nombres de campos, tipos, anidación) — es el insumo para
+- Con el caso (e) en 200: registra el **contrato completo real** (nombres de
+  campos, tipos, anidación de la respuesta) — es el insumo definitivo para
   T005. NO repitas la consulta: un solo consumo por endpoint.
+- Antes de commitear, verifica la redacción: `grep -v '***' results.json` no
+  debe mostrar tu nombre, número de documento ni EPS. `raw_response.json`
+  debe estar en `.gitignore` (nunca se sube).
 - Si **no** hay key o el endpoint responde 401/402: completa el modo contrato
   (OpenAPI + errores) y marca `blocked_by: "credencial"` en el reporte.
 - Guarda `results.json` y las respuestas crudas (sin key) en tu carpeta.
@@ -105,7 +139,8 @@ Escribe `scripts/sondeo/<tu-carpeta>/REPORTE.md` con estas secciones exactas:
 1. **Endpoint y propósito** (qué documento del negocio cubre).
 2. **Autenticación observada** (header, errores de auth).
 3. **Contrato de respuesta** (tabla campo/tipo/descripción según evidencia real u OpenAPI; indicar cuál fuente).
-4. **Resultados de los 4 casos** (tabla caso/status/latencia/conclusión).
+4. **Resultados de los 5 casos** (tabla caso/status/latencia/conclusión; el
+   caso (e) solo si ejecutaste la validación real autorizada).
 5. **Rate limits y errores** (lo que la documentación declara + lo observado).
 6. **Costos/créditos** (lo documentado; indicar si algún caso consumió créditos).
 7. **Riesgos y limitaciones para T005** (ej. "no entrega PDF oficial", "sin CORS").
@@ -132,9 +167,10 @@ Abre el PR hacia `main` con este cuerpo:
 ```
 T001 — Sondeo <proveedor>/<endpoint>
 Dev: <nombre> · Estado: <completo | completo-modo-contrato | blocked_by>
+Validación real autorizada: <sí (autocercicio) | no>
 Qué se hizo: <2 líneas>
-Cómo se verificó: <los 4 casos + evidencia>
-Criterios: AC-1 [PASS|FAIL] AC-2 [..] AC-3 [..] AC-4 [..]
+Cómo se verificó: <los casos + evidencia; datos personales redactados>
+Criterios: AC-1..AC-7 [PASS|FAIL por cada uno]
 Riesgos para T005: <1 línea>
 ```
 
@@ -150,6 +186,15 @@ Riesgos para T005: <1 línea>
 - **AC-4** EL REPORTE DEBERÁ documentar el contrato del endpoint con fuente
   citada (respuesta real u OpenAPI) y declarar explícitamente si algún caso
   consumió créditos o si el sondeo quedó bloqueado por credencial.
+- **AC-5** CUANDO `PROBE_REAL_DOC` está definida EL SCRIPT DEBERÁ realizar
+  exactamente UNA consulta real sin reintentos y escribir en `results.json`
+  todo valor personal redactado como `***` conservando tipo y estructura,
+  además del registro `validacion_real` con tipo de autorización.
+- **AC-6** CUANDO `PROBE_REAL_DOC` no está definida EL SCRIPT DEBERÁ completar
+  los casos (a)–(d), marcar `validacion_real.ejecutada = false` y NO efectuar
+  ninguna consulta con documento real.
+- **AC-7** EL PR DEBERÁ contener `raw_response.json` en `.gitignore` y ningún
+  archivo versionado con datos personales sin redactar.
 
 ## 8. Definition of Done de T001
 

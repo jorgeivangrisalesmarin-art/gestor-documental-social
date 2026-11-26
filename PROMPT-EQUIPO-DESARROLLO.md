@@ -62,8 +62,10 @@ Nada se considera terminado sin verificación. Flujo inquebrantable:
 
 ### 4. REGLAS INVIOLABLES
 
-1. No consultar datos personales reales (ni propios, ni de terceros) en
-   proveedores sin autorización escrita y finalidad registrada. Los scripts y
+1. Toda consulta con datos personales reales a proveedores requiere
+   autorización del titular y finalidad registrada. Vale el **autocercicio**
+   (el propio documento del desarrollador, para validación técnica, 1 intento,
+   respuesta redactada antes de versionar). Sin autorización, los scripts y
    pruebas usan SOLO documentos de prueba ficticios claramente identificados.
 2. No escribir secretos ni API keys en código, tests, logs o Git. Credenciales
    SOLO por variables de entorno / Secret Manager.
