@@ -12,6 +12,9 @@ web:
 test:
 	cd api && ../.venv/bin/python -m pytest -q
 
+e2e:
+	cd web && npx playwright test
+
 lint:
 	cd api && ../.venv/bin/ruff check app tests
 
