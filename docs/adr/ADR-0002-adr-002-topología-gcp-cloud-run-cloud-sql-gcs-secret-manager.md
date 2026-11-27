@@ -4,7 +4,8 @@ title: "ADR-002: Topología GCP — Cloud Run + Cloud SQL + GCS + Secret Manager
 status: accepted
 date: 2026-11-26
 deciders: ['Jorge']
-tags: ['gcp', 'cloud-run', 'infraestructura', 'topologia']approval_date: 2026-11-26
+tags: ['gcp', 'cloud-run', 'infraestructura', 'topologia']
+approval_date: 2026-11-26
 approval_notes: "Aprobado por Jorge (2026-11-26), plan T002."
 
 ---

@@ -19,3 +19,11 @@ La documentación generada automáticamente por LLM (wikis) es desechable: nunca
 - `docs/adr/ADR-001…006` — decisiones MADR (backend, topología GCP, contrato proveedores, auth, CI/CD, documentos) — tarea T002.
 - `docs/T001-matriz-proveedores.md` — entregable de Pepito (T001).
 - `.kiro/specs/` — specs EARS por feature (Capa 3) — desde T003/T004.
+
+## Ejecución MVP (2026-11-27)
+
+- `docs/adr/ADR-0001..0007` — creados y **accepted** (front-matter reparado tras bug newline de adr-kit).
+- `docs/TEST_REPORT.md` — pytest 26/26 + E2E Playwright 6/6 con evidencia.
+- `.claude/state/verify.log` — registro de verificación.
+- `deploy/gcp-deploy-runbook.md` + `cloudbuild.yaml` + Dockerfiles — infra lista para T010/T011 (ejecución pendiente, checkpoint N1).
+- Código MVP: `api/` (FastAPI completo) + `web/` (Next.js completo) — commits T003–T013.

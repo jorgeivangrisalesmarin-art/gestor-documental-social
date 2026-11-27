@@ -6,7 +6,8 @@ date: 2026-11-26
 deciders: ['Jorge']
 tags: ['documentos', 'gcs', 'storage', 'seguridad']
 policy:
-  boundaries: {'rules': [{'forbid': 'frontend -> bucket GCS directo sin URL firmada emitida por el backend'}]}approval_date: 2026-11-26
+  boundaries: {'rules': [{'forbid': 'frontend -> bucket GCS directo sin URL firmada emitida por el backend'}]}
+approval_date: 2026-11-26
 approval_notes: "Aprobado por Jorge (2026-11-26), plan T002."
 
 ---

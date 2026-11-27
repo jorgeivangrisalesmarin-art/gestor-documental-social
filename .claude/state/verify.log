@@ -1,0 +1,1 @@
+2026-11-27 | MVP motor documental (T003-T009,T013) | pytest 26/26 PASS; ruff limpio; E2E Playwright 6/6 PASS (login, consulta individual fixture, lote CSV con exclusión E15, anti-doble-proceso 409, historial, proveedores) | evidencia: .playwright-mcp/page-*.yml, e2e-masiva-completed.png

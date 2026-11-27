@@ -6,7 +6,8 @@ date: 2026-11-26
 deciders: ['Jorge']
 tags: ['cicd', 'gcp', 'cloudbuild', 'deploy']
 policy:
-  boundaries: {'rules': [{'forbid': 'push directo de humanos a main (siempre via PR)'}, {'forbid': 'deploy prod automático en cualquier pipeline'}]}approval_date: 2026-11-26
+  boundaries: {'rules': [{'forbid': 'push directo de humanos a main (siempre via PR)'}, {'forbid': 'deploy prod automático en cualquier pipeline'}]}
+approval_date: 2026-11-26
 approval_notes: "Aprobado por Jorge (2026-11-26), plan T002."
 
 ---

@@ -7,7 +7,8 @@ deciders: ['Jorge']
 tags: ['seguridad', 'auth', 'ley1581', 'hmac']
 policy:
   imports: {'disallow': ['python-jose (usar pyjwt)', 'passlib (usar argon2-cffi directo)'], 'prefer': ['pyjwt', 'argon2-cffi', 'cryptography']}
-  rationales: ['pyjwt es mantenido y mínimo; python-jose está descontinuado', 'argon2-cffi implementa Argon2id sin capa extra']approval_date: 2026-11-26
+  rationales: ['pyjwt es mantenido y mínimo; python-jose está descontinuado', 'argon2-cffi implementa Argon2id sin capa extra']
+approval_date: 2026-11-26
 approval_notes: "Aprobado por Jorge (2026-11-26), plan T002."
 
 ---

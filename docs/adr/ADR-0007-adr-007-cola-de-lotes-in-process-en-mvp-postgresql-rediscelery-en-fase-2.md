@@ -7,7 +7,8 @@ deciders: ['Jorge']
 tags: ['masivos', 'cola', 'mvp', 'deuda-tecnica']
 policy:
   imports: {'disallow': ['celery', 'redis (en el MVP)'], 'prefer': ['asyncio', 'sqlalchemy']}
-  rationales: ['Menos servicios = menos costo y menos superficie de fallo para el piloto', 'Los estados ya viven en PostgreSQL (batches.processed_records, lookup_jobs.status)']approval_date: 2026-11-26
+  rationales: ['Menos servicios = menos costo y menos superficie de fallo para el piloto', 'Los estados ya viven en PostgreSQL (batches.processed_records, lookup_jobs.status)']
+approval_date: 2026-11-26
 approval_notes: "Aprobado por Jorge (2026-11-26), plan T002."
 
 ---

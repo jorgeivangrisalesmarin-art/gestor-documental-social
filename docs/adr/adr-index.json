@@ -1,54 +1,95 @@
 {
   "metadata": {
-    "generated_at": "2026-11-26T19:43:02.131199",
-    "total_adrs": 0,
+    "generated_at": "2026-11-26T20:20:37.149025",
+    "total_adrs": 7,
     "adr_directory": "/home/jivagrisma/Escritorio/gestor-documental-social/docs/adr",
-    "validation_errors": [
-      {
-        "file": "/home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0001-adr-001-backend-python-312-fastapi-monolito-modular.md",
-        "errors": [
-          "[ERROR] /home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0001-adr-001-backend-python-312-fastapi-monolito-modular.md: Parse error in /home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0001-adr-001-backend-python-312-fastapi-monolito-modular.md: Invalid YAML in front-matter: while parsing a block mapping\n  in \"<unicode string>\", line 8, column 3:\n      imports: {'disallow': ['flask',  ... \n      ^\nexpected <block end>, but found '<scalar>'\n  in \"<unicode string>\", line 10, column 151:\n     ... roveedores con tipos estrictos']approval_date: 2026-11-26\n                                         ^ (rule: parse_error)"
-        ]
-      },
-      {
-        "file": "/home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0002-adr-002-topolog\u00eda-gcp-cloud-run-cloud-sql-gcs-secret-manager.md",
-        "errors": [
-          "[ERROR] /home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0002-adr-002-topolog\u00eda-gcp-cloud-run-cloud-sql-gcs-secret-manager.md: Parse error in /home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0002-adr-002-topolog\u00eda-gcp-cloud-run-cloud-sql-gcs-secret-manager.md: Invalid YAML in front-matter: while parsing a block mapping\n  in \"<unicode string>\", line 1, column 1:\n    id: \"ADR-0002\"\n    ^\nexpected <block end>, but found '<scalar>'\n  in \"<unicode string>\", line 6, column 59:\n     ...  'infraestructura', 'topologia']approval_date: 2026-11-26\n                                         ^ (rule: parse_error)"
-        ]
-      },
-      {
-        "file": "/home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0003-adr-003-contrato-documentprovider-intercambiable-con-normalizaci\u00f3n-propia.md",
-        "errors": [
-          "[ERROR] /home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0003-adr-003-contrato-documentprovider-intercambiable-con-normalizaci\u00f3n-propia.md: Parse error in /home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0003-adr-003-contrato-documentprovider-intercambiable-con-normalizaci\u00f3n-propia.md: Invalid YAML in front-matter: while parsing a block mapping\n  in \"<unicode string>\", line 8, column 3:\n      imports: {'disallow': ['requests ... \n      ^\nexpected <block end>, but found '<scalar>'\n  in \"<unicode string>\", line 9, column 174:\n     ... y (providers no tocan la BD)'}]}approval_date: 2026-11-26\n                                         ^ (rule: parse_error)"
-        ]
-      },
-      {
-        "file": "/home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0004-adr-004-autenticaci\u00f3n-jwt-propia-argon2id-y-hmac-para-identificaciones.md",
-        "errors": [
-          "[ERROR] /home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0004-adr-004-autenticaci\u00f3n-jwt-propia-argon2id-y-hmac-para-identificaciones.md: Parse error in /home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0004-adr-004-autenticaci\u00f3n-jwt-propia-argon2id-y-hmac-para-identificaciones.md: Invalid YAML in front-matter: while parsing a block mapping\n  in \"<unicode string>\", line 8, column 3:\n      imports: {'disallow': ['python-j ... \n      ^\nexpected <block end>, but found '<scalar>'\n  in \"<unicode string>\", line 9, column 128:\n     ... ementa Argon2id sin capa extra']approval_date: 2026-11-26\n                                         ^ (rule: parse_error)"
-        ]
-      },
-      {
-        "file": "/home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0005-adr-005-cicd-cloud-build-staging-autom\u00e1tico-producci\u00f3n-solo-manual-n1.md",
-        "errors": [
-          "[ERROR] /home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0005-adr-005-cicd-cloud-build-staging-autom\u00e1tico-producci\u00f3n-solo-manual-n1.md: Parse error in /home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0005-adr-005-cicd-cloud-build-staging-autom\u00e1tico-producci\u00f3n-solo-manual-n1.md: Invalid YAML in front-matter: while parsing a block mapping\n  in \"<unicode string>\", line 8, column 3:\n      boundaries: {'rules': [{'forbid' ... \n      ^\nexpected <block end>, but found '<scalar>'\n  in \"<unicode string>\", line 8, column 149:\n     ... m\u00e1tico en cualquier pipeline'}]}approval_date: 2026-11-26\n                                         ^ (rule: parse_error)"
-        ]
-      },
-      {
-        "file": "/home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0006-adr-006-almacenamiento-documental-fs-local-en-dev-gcs-privado-con-urls-firmadas-en-prod.md",
-        "errors": [
-          "[ERROR] /home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0006-adr-006-almacenamiento-documental-fs-local-en-dev-gcs-privado-con-urls-firmadas-en-prod.md: Parse error in /home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0006-adr-006-almacenamiento-documental-fs-local-en-dev-gcs-privado-con-urls-firmadas-en-prod.md: Invalid YAML in front-matter: while parsing a block mapping\n  in \"<unicode string>\", line 8, column 3:\n      boundaries: {'rules': [{'forbid' ... \n      ^\nexpected <block end>, but found '<scalar>'\n  in \"<unicode string>\", line 8, column 111:\n     ... rmada emitida por el backend'}]}approval_date: 2026-11-26\n                                         ^ (rule: parse_error)"
-        ]
-      },
-      {
-        "file": "/home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0007-adr-007-cola-de-lotes-in-process-en-mvp-postgresql-rediscelery-en-fase-2.md",
-        "errors": [
-          "[ERROR] /home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0007-adr-007-cola-de-lotes-in-process-en-mvp-postgresql-rediscelery-en-fase-2.md: Parse error in /home/jivagrisma/Escritorio/gestor-documental-social/docs/adr/ADR-0007-adr-007-cola-de-lotes-in-process-en-mvp-postgresql-rediscelery-en-fase-2.md: Invalid YAML in front-matter: while parsing a block mapping\n  in \"<unicode string>\", line 8, column 3:\n      imports: {'disallow': ['celery', ... \n      ^\nexpected <block end>, but found '<scalar>'\n  in \"<unicode string>\", line 9, column 177:\n     ... d_records, lookup_jobs.status)']approval_date: 2026-11-26\n                                         ^ (rule: parse_error)"
-        ]
-      }
-    ],
-    "status_counts": {},
-    "tag_counts": {}
+    "validation_errors": [],
+    "note": "regenerado manualmente 2026-11-27 tras reparar front-matter (bug newline en adr-kit approve)"
   },
-  "adrs": []
+  "adrs": [
+    {
+      "id": "ADR-0001",
+      "title": "ADR-001: Backend Python 3.12 + FastAPI (monolito modular)",
+      "status": "accepted",
+      "date": "2026-11-26",
+      "tags": [
+        "backend",
+        "python",
+        "fastapi",
+        "stack"
+      ]
+    },
+    {
+      "id": "ADR-0002",
+      "title": "ADR-002: Topología GCP — Cloud Run + Cloud SQL + GCS + Secret Manager",
+      "status": "accepted",
+      "date": "2026-11-26",
+      "tags": [
+        "gcp",
+        "cloud-run",
+        "infraestructura",
+        "topologia"
+      ]
+    },
+    {
+      "id": "ADR-0003",
+      "title": "ADR-003: Contrato DocumentProvider intercambiable con normalización propia",
+      "status": "accepted",
+      "date": "2026-11-26",
+      "tags": [
+        "arquitectura",
+        "proveedores",
+        "contrato",
+        "adaptadores"
+      ]
+    },
+    {
+      "id": "ADR-0004",
+      "title": "ADR-004: Autenticación JWT propia, Argon2id y HMAC para identificaciones",
+      "status": "accepted",
+      "date": "2026-11-26",
+      "tags": [
+        "seguridad",
+        "auth",
+        "ley1581",
+        "hmac"
+      ]
+    },
+    {
+      "id": "ADR-0005",
+      "title": "ADR-005: CI/CD Cloud Build — staging automático, producción solo manual (N1)",
+      "status": "accepted",
+      "date": "2026-11-26",
+      "tags": [
+        "cicd",
+        "gcp",
+        "cloudbuild",
+        "deploy"
+      ]
+    },
+    {
+      "id": "ADR-0006",
+      "title": "ADR-006: Almacenamiento documental — FS local en dev, GCS privado con URLs firmadas en prod",
+      "status": "accepted",
+      "date": "2026-11-26",
+      "tags": [
+        "documentos",
+        "gcs",
+        "storage",
+        "seguridad"
+      ]
+    },
+    {
+      "id": "ADR-0007",
+      "title": "ADR-007: Cola de lotes in-process en MVP (PostgreSQL), Redis/Celery en fase 2",
+      "status": "accepted",
+      "date": "2026-11-26",
+      "tags": [
+        "masivos",
+        "cola",
+        "mvp",
+        "deuda-tecnica"
+      ]
+    }
+  ]
 }

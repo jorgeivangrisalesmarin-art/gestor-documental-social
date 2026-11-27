@@ -1,0 +1,22 @@
+# CI/CD (ADR-0005): merge a main → lint + tests + deploy STAGING automático.
+# PRODUCCIÓN: solo manual con checkpoint N1 (nunca automático).
+steps:
+  - id: lint
+    name: python:3.12-slim
+    entrypoint: bash
+    args: ["-c", "pip install -q ruff && cd api && ruff check app tests"]
+  - id: tests
+    name: python:3.12-slim
+    entrypoint: bash
+    args: ["-c", "pip install -q fastapi uvicorn sqlalchemy[asyncio] aiosqlite asyncpg alembic pydantic pydantic-settings httpx pyjwt argon2-cffi cryptography python-multipart pytest pytest-asyncio && cd api && python -m pytest -q"]
+  - id: build-api-image
+    name: gcr.io/cloud-builders/docker
+    args: ["build", "-t", "us-central1-docker.pkg.dev/$PROJECT_ID/gds/api:$SHORT_SHA", "-f", "api/Dockerfile", "api"]
+  - id: build-web-image
+    name: gcr.io/cloud-builders/docker
+    args: ["build", "-t", "us-central1-docker.pkg.dev/$PROJECT_ID/gds/web:$SHORT_SHA", "-f", "web/Dockerfile", "web"]
+  - id: deploy-staging
+    name: gcr.io/cloud-builders/gcloud
+    args: ["run", "deploy", "gds-api-staging",
+      "--image", "us-central1-docker.pkg.dev/$PROJECT_ID/gds/api:$SHORT_SHA",
+      "--region", "us-central1", "--allow-unauthenticated", "--port", "8080"]

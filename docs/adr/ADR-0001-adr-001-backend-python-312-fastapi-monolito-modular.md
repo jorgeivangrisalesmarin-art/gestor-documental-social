@@ -8,7 +8,8 @@ tags: ['backend', 'python', 'fastapi', 'stack']
 policy:
   imports: {'disallow': ['flask', 'django', 'litestar'], 'prefer': ['fastapi', 'pydantic', 'httpx', 'sqlalchemy', 'alembic']}
   python: {'disallow_imports': ['flask', 'django']}
-  rationales: ['FastAPI da async nativo para I/O de proveedores y OpenAPI automático', 'Pydantic valida contratos de proveedores con tipos estrictos']approval_date: 2026-11-26
+  rationales: ['FastAPI da async nativo para I/O de proveedores y OpenAPI automático', 'Pydantic valida contratos de proveedores con tipos estrictos']
+approval_date: 2026-11-26
 approval_notes: "Aprobado por Jorge (2026-11-26) en ejecución del plan T002; alineado con stack del decisor (Python/Next.js)."
 
 ---

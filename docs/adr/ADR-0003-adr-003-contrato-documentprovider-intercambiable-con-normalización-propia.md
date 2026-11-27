@@ -7,7 +7,8 @@ deciders: ['Jorge']
 tags: ['arquitectura', 'proveedores', 'contrato', 'adaptadores']
 policy:
   imports: {'disallow': ['requests (usar httpx async en el backend)'], 'prefer': ['httpx']}
-  boundaries: {'rules': [{'forbid': 'services -> placapi/httpx directo (solo capa providers habla HTTP)'}, {'forbid': 'providers -> SQLAlchemy (providers no tocan la BD)'}]}approval_date: 2026-11-26
+  boundaries: {'rules': [{'forbid': 'services -> placapi/httpx directo (solo capa providers habla HTTP)'}, {'forbid': 'providers -> SQLAlchemy (providers no tocan la BD)'}]}
+approval_date: 2026-11-26
 approval_notes: "Aprobado por Jorge (2026-11-26), plan T002."
 
 ---
