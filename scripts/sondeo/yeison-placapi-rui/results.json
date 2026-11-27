@@ -1,0 +1,211 @@
+{
+  "metadata": {
+    "endpoint": "https://placapi.com/api/rui",
+    "proveedor": "PlacApi",
+    "modulo": "RUI (Registro Universal de Ingresos)",
+    "dev": "Yeison",
+    "tarea": "T001",
+    "fecha_ejecucion_utc": "2026-11-27T00:50:12.866582+00:00",
+    "consumo_credito": true,
+    "modo": "completo"
+  },
+  "casos": {
+    "caso_a_sin_auth": {
+      "descripcion": "Petición sin header de auth (espera 401)",
+      "status_code": 401,
+      "latencia_ms": 398.07,
+      "timestamp_utc": "2026-11-27T00:50:12.866668+00:00",
+      "cuerpo": {
+        "error": "Falta autenticación. Envía tu API key en el header 'x-api-key' (o 'Authorization: Bearer pk_live_…'). Genera una en /integracion.",
+        "code": "unauthorized"
+      },
+      "error": null,
+      "cumple_esperado": true
+    },
+    "caso_b_auth_invalida": {
+      "descripcion": "Petición con x-api-key inválida (espera 401 o 403)",
+      "status_code": 401,
+      "latencia_ms": 382.5,
+      "timestamp_utc": "2026-11-27T00:50:13.264904+00:00",
+      "cuerpo": {
+        "error": "API key inválida o revocada.",
+        "code": "unauthorized"
+      },
+      "error": null,
+      "cumple_esperado": true
+    },
+    "caso_c_payload_valido_ficticio": {
+      "descripcion": "Payload válido con doc ficticio 99999999999 (espera 404, 400 o sin resultado)",
+      "status_code": 404,
+      "latencia_ms": 376.51,
+      "timestamp_utc": "2026-11-27T00:50:13.647513+00:00",
+      "cuerpo": {
+        "source": "clasificacion-social",
+        "fetchedAt": "2026-11-27T00:47:58.200Z",
+        "mode": "live",
+        "status": "unknown",
+        "data": null,
+        "error": "La persona no se encuentra registrada",
+        "errorCode": "consulta_sin_resultado",
+        "fromCache": true,
+        "code": "consulta_sin_resultado"
+      },
+      "error": null,
+      "consumo_credito": false,
+      "cumple_esperado": true
+    },
+    "caso_d_payload_malformado": {
+      "descripcion": "Payload malformado sin numero_documento (espera 400 o 422)",
+      "status_code": 400,
+      "latencia_ms": 387.44,
+      "timestamp_utc": "2026-11-27T00:50:14.026673+00:00",
+      "cuerpo": {
+        "error": "Datos inválidos",
+        "code": "bad_request",
+        "details": {
+          "formErrors": [],
+          "fieldErrors": {
+            "docNumber": [
+              "Falta docNumber: el número de documento, solo dígitos (alias aceptados: doc, documento)"
+            ]
+          }
+        }
+      },
+      "error": null,
+      "cumple_esperado": true
+    },
+    "caso_e_validacion_real_autorizada": {
+      "descripcion": "Validación real autorizada (autocercicio)",
+      "status_code": 200,
+      "latencia_ms": 2085.38,
+      "timestamp_utc": "2026-11-27T00:50:14.414290+00:00",
+      "cuerpo_redactado": {
+        "source": "***",
+        "fetchedAt": "***",
+        "mode": "***",
+        "status": "***",
+        "data": {
+          "documento": "***",
+          "tipoDocumento": "***",
+          "persona": {
+            "nombre": "***",
+            "sexo": "***",
+            "edad": 999
+          },
+          "ubicacion": {
+            "departamento": "***",
+            "municipio": "***",
+            "codigoMunicipio": "***"
+          },
+          "sisben": {
+            "grupo": "***",
+            "nivel": "***",
+            "descripcion": "***"
+          },
+          "rui": {
+            "tieneClasificacion": "***",
+            "grupo": "***",
+            "nivel": "***",
+            "grupoIngresos": "***"
+          }
+        },
+        "cost": "***"
+      },
+      "error": null,
+      "cumple_esperado": true
+    }
+  },
+  "validacion_real": {
+    "ejecutada": true,
+    "documento": "CC...729",
+    "autorizacion": "autocercicio",
+    "status_code": 200
+  },
+  "contrato_observado": {
+    "source": {
+      "type": "str"
+    },
+    "fetchedAt": {
+      "type": "str"
+    },
+    "mode": {
+      "type": "str"
+    },
+    "status": {
+      "type": "str"
+    },
+    "data": {
+      "type": "object",
+      "fields": {
+        "data.documento": {
+          "type": "str"
+        },
+        "data.tipoDocumento": {
+          "type": "str"
+        },
+        "data.persona": {
+          "type": "object",
+          "fields": {
+            "data.persona.nombre": {
+              "type": "str"
+            },
+            "data.persona.sexo": {
+              "type": "str"
+            },
+            "data.persona.edad": {
+              "type": "int"
+            }
+          }
+        },
+        "data.ubicacion": {
+          "type": "object",
+          "fields": {
+            "data.ubicacion.departamento": {
+              "type": "str"
+            },
+            "data.ubicacion.municipio": {
+              "type": "str"
+            },
+            "data.ubicacion.codigoMunicipio": {
+              "type": "str"
+            }
+          }
+        },
+        "data.sisben": {
+          "type": "object",
+          "fields": {
+            "data.sisben.grupo": {
+              "type": "str"
+            },
+            "data.sisben.nivel": {
+              "type": "str"
+            },
+            "data.sisben.descripcion": {
+              "type": "str"
+            }
+          }
+        },
+        "data.rui": {
+          "type": "object",
+          "fields": {
+            "data.rui.tieneClasificacion": {
+              "type": "bool"
+            },
+            "data.rui.grupo": {
+              "type": "str"
+            },
+            "data.rui.nivel": {
+              "type": "str"
+            },
+            "data.rui.grupoIngresos": {
+              "type": "str"
+            }
+          }
+        }
+      }
+    },
+    "cost": {
+      "type": "int"
+    }
+  }
+}
