@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestor Documental Social — ADRES · SISBÉN IV · RUI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="brand">
+      <span class="logo-icon">🏛️</span>
+      <h1>Gestor Documental Social</h1>
+    </div>
+    <div class="system-status">
+      <span class="status-indicator" id="api-status-dot"></span>
+      <span id="api-status-text">Conectando...</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="tab-single">Consulta Individual</button>
+      <button class="tab-btn" data-tab="tab-batch">Carga Masiva</button>
+      <button class="tab-btn" data-tab="tab-history">Historial y Descargas</button>
+    </nav>
+
+    <!-- Tab 1: Consulta Individual -->
+    <section id="tab-single" class="tab-pane active">
+      <div class="card">
+        <h2>Consulta Individual Ciudadana</h2>
+        <p class="subtitle">Consulta de afiliación en salud (ADRES), clasificación Sisbén IV y focalización RUI.</p>
+        
+        <form id="form-single" class="form-grid">
+          <div class="form-group">
+            <label for="doc-type">Tipo de Documento</label>
+            <select id="doc-type" required>
+              <option value="CC">Cédula de Ciudadanía (CC)</option>
+              <option value="TI">Tarjeta de Identidad (TI)</option>
+              <option value="CE">Cédula de Extranjería (CE)</option>
+              <option value="PPT">Permiso por Protección Temporal (PPT)</option>
+              <option value="RC">Registro Civil (RC)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="doc-number">Número de Identificación</label>
+            <input type="text" id="doc-number" placeholder="Ej. 1020304050" required>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="purpose">Finalidad de la Consulta (Ley 1581 de 2012)</label>
+            <input type="text" id="purpose" placeholder="Ej. Validación de subsidio municipal de vivienda" required>
+          </div>
+
+          <div class="form-actions full-width">
+            <button type="submit" class="btn btn-primary">Realizar Consulta</button>
+          </div>
+        </form>
+
+        <div id="single-result" class="result-container" style="display: none;">
+          <h3>Resultado de la Verificación</h3>
+          <pre id="single-result-json"></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 2: Masivos -->
+    <section id="tab-batch" class="tab-pane">
+      <div class="card">
+        <h2>Procesamiento Masivo de Beneficiarios</h2>
+        <p class="subtitle">Carga de archivo Excel o CSV para verificación masiva de grupos poblacionales.</p>
+        <div class="drop-zone">
+          <p>Arrastra aquí tu archivo .xlsx o .csv</p>
+          <button class="btn btn-secondary">Seleccionar Archivo</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 3: Historial -->
+    <section id="tab-history" class="tab-pane">
+      <div class="card">
+        <h2>Historial de Consultas Realizadas</h2>
+        <p class="subtitle">Bitácora auditable de descargas y validaciones generadas.</p>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Fecha UTC</th>
+              <th>Hash Documento (HMAC)</th>
+              <th>Tipo</th>
+              <th>Estado</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="5" class="empty-state">No hay consultas registradas en esta sesión.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

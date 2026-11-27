@@ -1,0 +1,22 @@
+# Archivos temporales y respuestas crudas
+raw_response.json
+**/raw_response.json
+
+# Entornos virtuales y dependencias Python
+.venv/
+venv/
+env/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+**/.pytest_cache/
+
+# Variables de entorno y secretos
+.env
+.env.*
+!.env.example
+
+# Base de datos local
+*.db
+*.sqlite3

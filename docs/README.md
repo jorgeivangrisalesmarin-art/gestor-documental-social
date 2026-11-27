@@ -13,6 +13,7 @@ La documentación generada automáticamente por LLM (wikis) es desechable: nunca
 
 - [plan-desarrollo-despliegue-gcp.md](plan-desarrollo-despliegue-gcp.md) — plan vigente: ADRs por crear, arquitectura GCP (Cloud Run/SQL/Redis/GCS/Secret Manager), EARS, 14 tareas asignadas (T001–T014), entornos, costos, riesgos, DoD.
 - [T001-sondeo-apis-proveedores-juniors.md](tareas/T001-sondeo-apis-proveedores-juniors.md) — primera tarea de los juniors: script de sondeo por endpoint (Jhon: placapi/eps · Markos: placapi/sisben · Yeison: placapi/rui · Pepito: arbol/adres + matriz comparativa).
+- [T003-scaffold-monorepo.md](tareas/T003-scaffold-monorepo.md) — scaffold del monorepo (FastAPI + Web + Specs EARS + CI) asignado a Jorge y Yeison.
 
 ## Pendiente de crear (según plan)
 
