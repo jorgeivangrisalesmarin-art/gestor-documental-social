@@ -28,3 +28,4 @@ La documentación generada automáticamente por LLM (wikis) es desechable: nunca
 - `deploy/gcp-deploy-runbook.md` + `cloudbuild.yaml` + Dockerfiles — infra lista para T010/T011 (ejecución pendiente, checkpoint N1).
 - Código MVP: `api/` (FastAPI completo) + `web/` (Next.js completo) — commits T003–T013.
 - [ONBOARDING-equipo-juniors.md](tareas/ONBOARDING-equipo-juniors.md) — guía de arranque para Jhon/Markos/Yeison/Pepito: setup local, modo fixture, tareas T001 y T015–T018, flujo Git/PR y reglas.
+- [T017-suite-playwright-e2e.md](tareas/T017-suite-playwright-e2e.md) — suite Playwright de regresión (6 flujos E2E) asignada a Yeison.

@@ -10,6 +10,10 @@ __pycache__/
 node_modules/
 web/.next/
 web/out/
+test-results/
+**/test-results/
+playwright-report/
+**/playwright-report/
 
 # Entornos y secretos — NUNCA versionar
 .env

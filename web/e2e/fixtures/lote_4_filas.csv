@@ -1,0 +1,5 @@
+tipo_documento,numero_documento,adres,sisben_iv,rui,autorizacion_confirmada,referencia_autorizacion
+CC,123456789,true,false,false,true,oficio-001
+CC,222222222,true,true,false,true,oficio-002
+CC,111110,true,false,false,true,oficio-003
+CC,999888777,true,false,false,false,
