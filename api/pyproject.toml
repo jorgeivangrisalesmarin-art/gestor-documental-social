@@ -1,0 +1,37 @@
+[project]
+name = "gds-api"
+version = "0.1.0"
+description = "Gestor Documental Social — API del motor documental (ADRES/SISBÉN IV/RUI)"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.30",
+  "sqlalchemy[asyncio]>=2.0",
+  "aiosqlite>=0.20",
+  "asyncpg>=0.29",
+  "alembic>=1.13",
+  "pydantic>=2.8",
+  "pydantic-settings>=2.4",
+  "httpx>=0.27",
+  "pyjwt>=2.9",
+  "argon2-cffi>=23.1",
+  "cryptography>=43.0",
+  "python-multipart>=0.0.9",
+  "openpyxl>=3.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.24", "ruff>=0.6"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+# B008 es el idiom estándar de FastAPI (Depends() en defaults de parámetros)
+ignore = ["B008"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

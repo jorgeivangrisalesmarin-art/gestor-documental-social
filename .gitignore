@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Node / Next.js
+node_modules/
+web/.next/
+web/out/
+
+# Entornos y secretos — NUNCA versionar
+.env
+.env.*
+!.env.example
+
+# Datos locales y respuestas crudas (contienen datos personales — jamás subir)
+data/
+raw_response.json
+*.sqlite
+*.db
+
+# Sondeo T001 (respuestas crudas de proveedores)
+scripts/sondeo/**/raw_response.json
+
+# Sistema
+.DS_Store

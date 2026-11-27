@@ -1,0 +1,50 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: gds
+      POSTGRES_PASSWORD: gds
+      POSTGRES_DB: gds
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gds"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build: ./api
+    environment:
+      APP_ENV: development
+      WEB_ORIGIN: http://localhost:3000
+      DATABASE_URL: postgresql+asyncpg://gds:gds@postgres:5432/gds
+      JWT_SECRET: ${JWT_SECRET:-dev-no-usar-en-prod}
+      SEED_ADMIN_EMAIL: ${SEED_ADMIN_EMAIL:-admin@local.test}
+      SEED_ADMIN_PASSWORD: ${SEED_ADMIN_PASSWORD:-admin1234}
+      DOC_ENCRYPTION_KEY: ${DOC_ENCRYPTION_KEY}
+      DOC_HMAC_KEY: ${DOC_HMAC_KEY}
+      DOCUMENT_STORAGE_PATH: /data/documents
+      PLACAPI_API_KEY: ${PLACAPI_API_KEY:-}
+    volumes:
+      - docstore:/data/documents
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  web:
+    build: ./web
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
+  docstore:
